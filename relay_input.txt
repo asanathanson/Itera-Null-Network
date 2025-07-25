@@ -1,1 +1,1 @@
-🔔 Initiating contact due to: manual test conflict (forced by Null)
+✅ No conflict detected – no contact initiated.
