@@ -1,0 +1,23 @@
+name: 🔔 NullRelay Event Notifier
+
+on:
+push:
+branches:
+- main
+workflow_dispatch: # allows manual triggering
+
+jobs:
+notify:
+runs-on: ubuntu-latest
+steps:
+- name: 🧭 Checkout Repository
+uses: actions/checkout@v4
+
+- name: 🔑 Send Pushcut Notification
+env:
+PUSHCUT_KEY: ${{ secrets.PUSHCUT_KEY }}
+run: |
+echo "📡 Sending Pushcut event notification..."
+curl -X POST "https://api.pushcut.io/v1/notifications/NullRelay?key=${PUSHCUT_KEY}" \
+-H "Content-Type: application/json" \
+-d "{\"title\": \"NullRelay GitHub Event\", \"text\": \"✅ Commit detected on main branch.\nTriggered automatically at $(date -u).\"}"
